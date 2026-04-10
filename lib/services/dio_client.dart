@@ -34,7 +34,7 @@ class DioClient {
           _logger.i('📥 Response: ${response.statusCode} ${response.requestOptions.path}');
           return handler.next(response);
         },
-        onError: (DioError error, handler) {
+        onError: (DioException error, handler) {
           _logger.e('❌ Error: ${error.message}');
           _logger.e('🎯 URL: ${error.requestOptions.uri}');
           
@@ -46,17 +46,17 @@ class DioClient {
     );
   }
 
-  String _handleError(DioError error) {
+  String _handleError(DioException error) {
     switch (error.type) {
-      case DioErrorType.connectionTimeout:
+      case DioExceptionType.connectionTimeout:
         return 'Kết nối quá thời gian. Vui lòng thử lại.';
-      case DioErrorType.sendTimeout:
+      case DioExceptionType.sendTimeout:
         return 'Gửi dữ liệu quá thời gian.';
-      case DioErrorType.receiveTimeout:
+      case DioExceptionType.receiveTimeout:
         return 'Nhận dữ liệu quá thời gian.';
-      case DioErrorType.badResponse:
+      case DioExceptionType.badResponse:
         return _handleStatusCode(error.response?.statusCode);
-      case DioErrorType.cancel:
+      case DioExceptionType.cancel:
         return 'Đã hủy yêu cầu.';
       default:
         return 'Không thể kết nối đến máy chủ.';
