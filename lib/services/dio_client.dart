@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:logger/logger.dart';
 
 class DioClient {
-  static const String apiKey = "YOUR_API_KEY_HERE"; // Đăng ký tại newsapi.org
+  static const String apiKey = "69ac86d2d9ec435182f94f065578540a"; // Đăng ký tại newsapi.org
   
   late Dio _dio;
   final Logger _logger = Logger();
